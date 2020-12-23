@@ -1,21 +1,30 @@
 <template>
-    
-<div id="vip">
-    <the-home> </the-home>
-    <api-news/>
-</div>
-
+  <v-layout>
+    <v-flex>
+      <v-row
+        align="center"
+        align-content="center"
+        style="height: 100vh"
+        class="mx-auto">
+        <v-col>
+          <v-card-title>
+          </v-card-title>
+          <barra-superior> </barra-superior>
+          <!-- <the-home> </the-home> -->
+          <api-news />
+        </v-col>
+      </v-row>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
-
-import TheHome from "@/components/TheHome.vue"
-import ApiNews from "@/components/ApiNews.vue"
+import BarraSuperior from "../components/BarraSuperior.vue";
+import ApiNews from "@/components/ApiNews.vue";
 export default {
-    components:{
-        TheHome,
-        ApiNews,
-    }
-    
-}
+  components: {
+    BarraSuperior,
+    ApiNews,
+  },
+};
 </script>

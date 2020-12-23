@@ -1,17 +1,20 @@
 <template>
-  <v-app id="inspire">
-    <v-system-bar app>
-      <v-spacer></v-spacer>
-
-      <v-icon>mdi-square</v-icon>
-
-      <v-icon>mdi-circle</v-icon>
-
-      <v-icon>mdi-triangle</v-icon>
-    </v-system-bar>
+      <v-app id="inspire">
 
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-toolbar-title> Ciclo 3 MisionTIC2022 </v-toolbar-title>
+    <v-spacer> </v-spacer>
+    <!-- El método salir se creo en la store de Vuex -->
+    <v-btn
+    icon
+    class="mr-5"
+    @click = "salir()">
+      <v-icon> mdi-logout </v-icon>
+      <span> Salir</span>
+     </v-btn>
+
+
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" fixed temporary>
@@ -47,8 +50,6 @@
 
     <v-main class="grey lighten-2">
       <v-container>
-        
-        
 
         <router-view />
       </v-container>
@@ -57,21 +58,27 @@
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
-  name: "App",
-  components: {},
-
-  data: () => ({
+    name:"AutorizadoComponent",
+    
+    data: () => ({
     drawer: null,
     selectedItem: 1,
     items: [
-      { text: 'Home', icon: 'mdi-home', ruta:'Home'},
-      { text: 'Categoría', icon: 'mdi-table', ruta:'Categoria' },
-      { text: 'Artículo', icon: 'mdi-flag', ruta: 'Articulo' },
-      { text: 'Usuario', icon: 'mdi-file', ruta:'Usuario' },
+        { text: 'Home', icon: 'mdi-home', ruta:'Home'},
+        { text: 'Categoría', icon: 'mdi-table', ruta:'Categoria' },
+        { text: 'Artículo', icon: 'mdi-flag', ruta: 'Articulo' },
+        { text: 'Usuario', icon: 'mdi-file', ruta:'Usuario' },
     ],
-  }),
-};
+    }),    
+      // Al duplicar una pagina se ejecute el autoLogin para que usuario no deba volver a logear
+      created(){
+        this.$store.dispatch('autoLogin')
+      },
+    methods:{
+      salir(){
+        this.$store.dispatch('salir')
+    }
+}
+}
 </script>

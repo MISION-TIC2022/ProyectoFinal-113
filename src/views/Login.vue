@@ -1,24 +1,25 @@
 <template>
- 
-<div class="container m-5">
-    
-    <div class="container">
-        <the-login/>
+    <div class="container-fluid m-5">
+        <div class="container">
+            <barra-superior/>
+            <the-login/>
+            <area-footer/>
+        </div>
     </div>
-    
-</div>
-
 </template>
 
 
 <script>
-//Se referencia al componnte TheLogin en una nueva carpeta auth
+import BarraSuperior from '@/components/BarraSuperior.vue';
 import TheLogin from "@/components/Auth/TheLogin.vue";
-// import AreaFooter from '../components/AreaFooter.vue';
+import AreaFooter from '@/components/AreaFooter.vue';
+
+
 export default {
     components:{
+        BarraSuperior,
         TheLogin,
-        // AreaFooter,
+        AreaFooter,
     }
 }
 </script> 

@@ -1,6 +1,11 @@
 <template>
   <div class="about">
-    <h1 class="m-4 text-center">ACERCA DEL EQUIPO</h1>
+    
+    <barra-superior />
+    <div class="container-fluid mt-5">
+      <h1 class="mt-5 text-center">ACERCA DEL EQUIPO</h1>
+    </div>
+
     <!-- Area de miembros  -->
     <div class="container-fluid">
       <div class="row justify-content-center">
@@ -8,27 +13,25 @@
           <!-- v-bind se puede abreviar como :member solamente -->
           <team-card v-bind:member="item"></team-card>
         </div>
-      <area-footer/>
+        <area-footer />
       </div>
     </div>
-
-
   </div>
 </template>
 
 
 <script>
-// @ is an alias to /src
-// import AreaFooter from "../components/AreaFooter.vue";
+import BarraSuperior from "@/components/BarraSuperior.vue";
 import TeamCard from "../components/TeamCard.vue";
-
+import AreaFooter from "../components/AreaFooter.vue";
+// import AreaFooter from "../components/AreaFooter.vue";
 
 export default {
   name: "Home",
   components: {
-    // AreaFooter,
+    BarraSuperior,
     TeamCard,
-
+    AreaFooter,
   },
   data() {
     return {
@@ -39,7 +42,6 @@ export default {
           descripcion:
             "Ingeniero civil, Magister en Gestión de la Tecnología Educativa. Docente de la IE. Antonio García Paredes en Popayán-Cauca. Me encanta aprender cosas nuevas, poner a prueba mis capacidades. ",
           rol: "Desarrollador Backend",
-          // image : "//placeimg.com/150/150/city",
           image: "./gustav.jpeg",
         },
         {
@@ -78,7 +80,6 @@ export default {
       ],
     };
   },
-  methods(){}
 };
 </script>
 

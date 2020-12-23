@@ -1,38 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import store from '../store'
 
 Vue.use(VueRouter)
 
 const routes = [{
         path: '/',
         name: 'Home',
-        component: Home
-    },
-    {
-        path: '/login',
-        name: 'Login',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () =>
-            import ( /* webpackChunkName: "login" */ '../views/Login.vue'),
-            meta:{
-                public:true
-            }
-    },
-
-    {
-        path: '/vip',
-        name: 'VIP',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () =>
-            import ( /* webpackChunkName: "vip" */ '../views/Vip.vue'),
-        // meta: {
-        //     requireAuth: true
-        // }
+        component: Home,
+        meta:{
+            public:true
+        }
     },
     {
         path: '/about',
@@ -43,6 +22,78 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "about" */ '../views/About.vue')
     },
+    {
+        path: '/login',
+        name: 'Login',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import ( /* webpackChunkName: "login" */ '../views/Login.vue'),
+            meta:{
+                public:true,
+            }
+    },
+    {
+        path: '/autorizado',
+        name: 'Autorizado',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "autorizado" */ '../views/Autorizado.vue'),
+        meta:{
+            auth:true,
+        },
+      children:[
+        {
+          path: 'categoria',
+          name: 'Categoria',
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          component: () => import(/* webpackChunkName: "categoria" */ '../views/Categoria.vue'),
+          meta:{
+            auth:true,
+          }
+        },
+        {
+          path: 'articulo',
+          name: 'Articulo',
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          component: () => import(/* webpackChunkName: "articulo" */ '../views/Articulo.vue'),
+          meta:{
+            auth:true,
+          }
+        },
+        {
+          path: 'usuario',
+          name: 'Usuario',
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          component: () => import(/* webpackChunkName: "usuario" */ '../views/Usuario.vue'),
+          meta:{
+            auth:true,
+          }
+        }
+      ]
+      },
+
+    {
+        path: '/vip',
+        name: 'VIP',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import ( /* webpackChunkName: "vip" */ '../views/Vip.vue'),
+        meta: {
+            public:true,
+        }
+    },
+    
     {
         path: '/solucion1',
         name: 'Solucion1',
@@ -70,43 +121,7 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "solucion3" */ '../views/solucion3.vue')
     },
-    // {
-    //     path: '/autorizado',
-    //     name: 'Autorizado',
-    //     // route level code-splitting
-    //     // this generates a separate chunk (about.[hash].js) for this route
-    //     // which is lazy-loaded when the route is visited.
-    //     component: () => import(/* webpackChunkName: "autorizado" */ '../views/Autorizado.vue'),
-    //     meta:{
-    //       auth:true
-    //     },
-    //   children:[
-    //     {
-    //       path: '/categoria',
-    //       name: 'Categoria',
-    //       // route level code-splitting
-    //       // this generates a separate chunk (about.[hash].js) for this route
-    //       // which is lazy-loaded when the route is visited.
-    //       component: () => import(/* webpackChunkName: "categoria" */ '../views/Categoria.vue')
-    //     },
-    //     {
-    //       path: '/articulo',
-    //       name: 'Articulo',
-    //       // route level code-splitting
-    //       // this generates a separate chunk (about.[hash].js) for this route
-    //       // which is lazy-loaded when the route is visited.
-    //       component: () => import(/* webpackChunkName: "articulo" */ '../views/Articulo.vue')
-    //     },
-    //     {
-    //       path: '/usuario',
-    //       name: 'Usuario',
-    //       // route level code-splitting
-    //       // this generates a separate chunk (about.[hash].js) for this route
-    //       // which is lazy-loaded when the route is visited.
-    //       component: () => import(/* webpackChunkName: "usuario" */ '../views/Usuario.vue')
-    //     }
-    //   ]
-    //   },
+
 ]
 
 const router = new VueRouter({
@@ -122,20 +137,22 @@ const router = new VueRouter({
 //Esta validacion se hace para que al borrar el token de la autenticacion, el usuario no pueda seguir en la pagina que se ha logeado
 //record es un nombre de una variable 
 //Si me coincide algunas de las rutas que estoy haciendo con el atributo meta.requireAuth        
-//jwt es variable en la cual se almaceno el token en el localStorage
+//kjwt es variable en la cual se almaceno el token en el localStorage
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requireAuth)) {
-        if (localStorage.getItem('jwt') === null) {
-            next({
-                path: '/'
-            });
-        } else {
+    //verificamos si la ruta a la que accedemos es publica o privada
+    //miruta es una variable nuestra
+    if (to.matched.some(miruta => miruta.meta.public)) {
+        next();
+    } else if (to.matched.some(miruta => miruta.meta.auth)){
+    // si existe un user en store.state
+        if (store.state.user){
             next();
+        }else{
+            next({name: 'Login'})
         }
-    } else {
+    }else{
         next();
     }
-});
-
+})
 export default router
