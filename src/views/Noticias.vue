@@ -5,13 +5,17 @@
         align="center"
         align-content="center"
         style="height: 100vh"
-        class="mx-auto">
         <v-col>
-          <v-card-title>
-          </v-card-title>
           <barra-superior> </barra-superior>
-          <!-- <the-home> </the-home> -->
+          <hr>
+          <hr>
+          <v-card-title>
+          <div class="container-fluid mt-5">
+          <h1 class="mt-5 text-center">NOTICIAS DE ACTUALIDAD</h1>
+          </div>
+          </v-card-title>
           <api-news />
+          <area-footer/>
         </v-col>
       </v-row>
     </v-flex>
@@ -21,10 +25,13 @@
 <script>
 import BarraSuperior from "../components/BarraSuperior.vue";
 import ApiNews from "@/components/ApiNews.vue";
+import AreaFooter from '../components/AreaFooter.vue';
+
 export default {
   components: {
     BarraSuperior,
     ApiNews,
+    AreaFooter,
   },
 };
 </script>

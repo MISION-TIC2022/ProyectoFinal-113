@@ -237,9 +237,7 @@ export default {
             return error;
           });
 
-        // Object.assign(this.desserts[this.editedIndex], this.editedItem);
 
-        // logica para crear un objeto nuevo
       } else {
         axios
           .put("http://localhost:3000/api/categoria/activate", {
@@ -299,11 +297,8 @@ export default {
             return error;
           });
 
-        // Object.assign(this.desserts[this.editedIndex], this.editedItem);
 
-        // logica para crear un objeto nuevo
       } else {
-        // this.desserts.push(this.editedItem);
         axios
           .post("http://localhost:3000/api/categoria/add", {
             nombre: this.editedItem.nombre,

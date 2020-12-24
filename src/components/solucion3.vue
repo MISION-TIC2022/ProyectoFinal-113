@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div id="cuadro2" class="container-fluid">
     <h1 style="text-align:center;">Entrenamiento enfocado al HomeOffice</h1>
 
     <p class="text-center mb-3">
@@ -59,3 +59,13 @@ export default {
   props: {},
 };
 </script>
+
+
+<style scoped>
+#cuadro2{
+  height: 1500px;
+  width: 1500px;
+
+}
+
+</style>

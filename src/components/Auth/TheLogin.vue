@@ -1,6 +1,6 @@
 <template>
-  <v-layout>
-    <v-flex>
+  <v-layout align-center justify-center>
+    <v-flex xs12 sm8 md6 lg5 x14>
       <v-row align="center"
         align-content="center"
         style="height:45vh"
@@ -12,7 +12,8 @@
 
             <v-form ref="form" Lazy-validation>
                 <v-card-title
-                title class="headline">
+                title class="headline"
+                dark color="silver darken-3">
                 Formulario de Login
                 </v-card-title>
               
@@ -34,7 +35,7 @@
                   block
                   rounded
                   color="success"
-                  @click="loginUser">
+                  @click="loginUser()">
                   INGRESAR
                 </v-btn>
               </div>

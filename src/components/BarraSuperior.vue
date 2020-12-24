@@ -51,9 +51,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="#"
                   ><router-link
-                    to="/about"
+                    to="/noticias"
                     style="text-decoration: none; color: white"
-                    >About</router-link
+                    >Noticias</router-link
                   >
                   |</a
                 >
@@ -61,14 +61,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="#"
                   ><router-link
-                    to="/vip"
+                    to="/about"
                     style="text-decoration: none; color: white"
-                    >VIP</router-link
+                    >About</router-link
                   >
                   |</a
                 >
               </li>
-              |
 
               <li class="nav-item dropdown">
                 <a

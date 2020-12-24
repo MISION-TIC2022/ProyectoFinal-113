@@ -1,23 +1,25 @@
 <template>
   <div class="about">
-    
     <barra-superior />
+    <hr><hr><hr><hr>
     <div class="container-fluid mt-5">
       <h1 class="mt-5 text-center">ACERCA DEL EQUIPO</h1>
     </div>
 
     <!-- Area de miembros  -->
-    <div class="container-fluid">
+    <div class="container">
       <div class="row justify-content-center">
         <div class="col mt-2" v-for="(item, index) of team" :key="index">
           <!-- v-bind se puede abreviar como :member solamente -->
           <team-card v-bind:member="item"></team-card>
         </div>
-        <area-footer />
       </div>
     </div>
+        <area-footer />
   </div>
 </template>
+
+
 
 
 <script>

@@ -222,6 +222,9 @@ export default {
         axios
           .put("http://localhost:3000/api/usuario/deactivate", {
             id: this.editedItem.id,
+          headers:{
+            token: this.$store.state.token
+        }
           })
           .then((response) => {
             console.log(response);
@@ -232,13 +235,12 @@ export default {
             return error;
           });
 
-        // Object.assign(this.desserts[this.editedIndex], this.editedItem);
-
-        // logica para crear un objeto nuevo
-      } else {
+  } else {
         axios
           .put("http://localhost:3000/api/usuario/activate", {
-            id: this.editedItem.id,
+            id: this.editedItem.id,  headers:{
+            token: this.$store.state.token
+        }
           })
           .then((response) => {
             console.log(response);
@@ -277,7 +279,10 @@ export default {
             nombre: this.editedItem.nombre,
             rol: this.editedItem.rol,
             email: this.editedItem.email,
-            estado: this.editedItem.estado
+            estado: this.editedItem.estado,  
+            headers:{
+            token: this.$store.state.token
+        }
           })
           .then((response) => {
             console.log(response);
@@ -295,7 +300,10 @@ export default {
             nombre: this.editedItem.nombre,
             rol: this.editedItem.rol,
             email: this.editedItem.email,
-            estado:1
+            estado:1,
+            headers:{
+            token: this.$store.state.token
+        }
           })
           .then((response) => {
             console.log(response);

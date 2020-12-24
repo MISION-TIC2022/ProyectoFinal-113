@@ -6,14 +6,14 @@
       trabajo, la escuela y en la vida cotidiana con Microsoft Teams.
     </p>
 
-    <div class="container">
+    <div class="container justify-content-center">
       <div class="row" style="text-align:justify">
         <div class="col col-md-6">
           <div class="card bg-success text-white m-3 shadow-lg" style="height:425px; border-radius: 20px; border-style: none;">
             <img class="card-img-top" src="../../public/imagenes/chat.webp" style="border-radius: 20px 20px 0px 0px;" alt="Card image" />
             <div class="card-body">
               <h4 class="card-title text-center">Chat</h4>
-              <p class="card-text p-3">Comparte tu opinión y agrega tu toque personal. Envía GIF, adhesivos y emojis en un chat grupal o en mensajes individuales.</p>
+              <p class="card-text">Comparte tu opinión y agrega tu toque personal. Envía GIF, adhesivos y emojis en un chat grupal o en mensajes individuales.</p>
             </div>
           </div>
         </div>
@@ -55,3 +55,12 @@ export default {
   props: {},
 };
 </script>
+
+<style scoped>
+#cuadro1{
+  height: 500px;
+  width: 500px;
+
+}
+
+</style>

@@ -203,7 +203,11 @@ export default {
 
   methods: {
     list(){
-      axios.get('http://localhost:3000/api/articulo/list')
+      axios.get('http://localhost:3000/api/articulo/list',  {
+          headers:{
+            token: this.$store.state.token
+          }
+      })
       .then(
         response => {
           this.articulos = response.data;
